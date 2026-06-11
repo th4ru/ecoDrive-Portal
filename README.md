@@ -33,22 +33,21 @@ The codebase adheres strictly to an organized monolithic architecture, segregati
 
 ```text
 eco/
+├── backend/
+│   ├── config/
+│   │   └── database.php      # Secure PDO connection instance configuration
+│   └── actions/
+│       ├── process_reg.php   # Driver onboarding processor & age restrictions validator
+│       ├── auth_login.php    # Resolves hashed password credentials for Admins
+│       └── admin_action.php  # Processes record deletion requests & updates
 │
-├── config/
-│   └── database.php      # Secure PDO database connector instance configuration
-│
-├── public/
-│   ├── js/
-│   │   └── location.js   # AJAX script handling ipinfo API fetching & age boundary guards
-│   ├── index.php         # Public Driver Profile Registration UI form terminal
-│   ├── login.php         # Administrative Security Authentication gateway layout
-│   └── dashboard.php     # State-aware administrative dashboard & driver receipt cards
-│
-├── actions/
-│   ├── process_reg.php   # Onboarding processor executing DB insertions & age-checks
-│   ├── auth_login.php    # Resolves password verify hash comparisons matching Admins
-│   └── admin_action.php  # Handles administrative state drop queries & inline modifications
-└── README.md             # GitHub documentation and deployment framework
+└── frontend/
+    ├── js/
+    │   └── location.js       # Handles ipinfo API fetching & real-time age constraints
+    ├── index.html            # Public Driver Profile Registration Form UI
+    ├── login.php             # Administrative Login Portal Interface
+    └── dashboard.php         # State-aware admin grid & Driver registration receipt card
+README.md
 ```
 
 ---
