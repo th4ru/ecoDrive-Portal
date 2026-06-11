@@ -2,7 +2,7 @@
 session_start();
 require_once '../config/database.php';
 
-c
+
 if (isset($_GET['logout'])) {
     session_unset();
     session_destroy();

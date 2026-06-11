@@ -55,7 +55,7 @@ README.md
 
 o To review the administrative backend features, log tracking grids, record editing modules, or elimination handlers, use the pre-seeded admin profile:
 
-o Portal Sign-In Endpoint URL: http://localhost/ecodrive-portal/public/login.php
+o Portal Sign-In Endpoint URL: http://localhost/eco/frontend/index.html
 
 o Username Variable: admin
 
