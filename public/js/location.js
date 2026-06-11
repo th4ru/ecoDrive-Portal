@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Dynamic Auto-Populate Execution via External IPInfo Verification Layer
-    // NOTE: Using the free global open context fallback route. Add tokens if explicitly configured.
+    
+    
     fetch('https://ipinfo.io/json')
         .then(response => {
             if (!response.ok) throw new Error('Network metadata tracking error failed.');
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('city').value = 'Colombo';
         });
 
-    // 2. Strict Frontend Real-Time Age Validation Guardrails (Must be 24+ Years Old)
+    
     const birthdayPicker = document.getElementById('birthday');
     if (birthdayPicker) {
         birthdayPicker.addEventListener('change', () => {
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (evaluatedAge < 24) {
                 alert("Security Restriction: Independent drivers registering profiles inside EcoDrive must be at least 24 years old.");
-                birthdayPicker.value = ''; // Hard reset tracking field parameters
+                birthdayPicker.value = ''; 
             }
         });
     }

@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_role'])) {
 
 $role = $_SESSION['user_role'];
 $search = $_GET['search'] ?? '';
-$edit_id = $_GET['edit_id'] ?? null; // Keeps track of which driver is being edited
+$edit_id = $_GET['edit_id'] ?? null;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,14 +121,52 @@ $edit_id = $_GET['edit_id'] ?? null; // Keeps track of which driver is being edi
             </div>
 
         <?php else: ?>
-            <div class="bg-white rounded-xl shadow border p-6 max-w-xl mx-auto text-center">
-                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <div class="bg-white rounded-xl shadow border p-8 max-w-2xl mx-auto">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1">Registration Complete!</h2>
+                    <p class="text-sm text-gray-500">Your driver record structure is compiled successfully into our operations ledger.</p>
                 </div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-1">Registration Complete!</h2>
-                <p class="text-sm text-gray-500 mb-6">Your driver record structure is compiled successfully into our operations ledger.</p>
-                <div class="text-left bg-gray-50 p-4 rounded-lg border text-sm space-y-2">
-                    <div><span class="font-bold text-gray-700">Driver Assignment:</span> <?= htmlspecialchars($_SESSION['user_name']) ?></div>
+                
+                <?php if (isset($_SESSION['driver_data'])): $d = $_SESSION['driver_data']; ?>
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 p-5 rounded-lg border border-gray-100">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-emerald-700 mb-3 border-b pb-1">Personal Account Ledger</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                                <div><span class="font-semibold text-gray-500">Full Name:</span> <span class="text-gray-900 font-medium"><?= htmlspecialchars($_SESSION['user_name']) ?></span></div>
+                                <div><span class="font-semibold text-gray-500">Date of Birth:</span> <span class="text-gray-900"><?= htmlspecialchars($d['birthday']) ?></span></div>
+                                <div><span class="font-semibold text-gray-500">Gender Identity:</span> <span class="text-gray-900"><?= htmlspecialchars($d['gender']) ?></span></div>
+                                <div class="sm:col-span-2"><span class="font-semibold text-gray-500">Physical Address:</span> <span class="text-gray-900"><?= htmlspecialchars($d['address']) ?></span></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-5 rounded-lg border border-gray-100">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-emerald-700 mb-3 border-b pb-1">Auto-Fetched Location Details</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                                <div><span class="font-semibold text-gray-500">City:</span> <span class="text-gray-900 font-medium"><?= htmlspecialchars($d['city']) ?></span></div>
+                                <div><span class="font-semibold text-gray-500">Region:</span> <span class="text-gray-900"><?= htmlspecialchars($d['region']) ?></span></div>
+                                <div><span class="font-semibold text-gray-500">Country Code:</span> <span class="text-gray-900 font-mono"><?= htmlspecialchars($d['country']) ?></span></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-5 rounded-lg border border-gray-100">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-emerald-700 mb-3 border-b pb-1">Fleet Vehicle Specification</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                                <div><span class="font-semibold text-gray-500">License Class:</span> <span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded text-xs font-semibold"><?= htmlspecialchars($d['license_class']) ?></span></div>
+                                <div><span class="font-semibold text-gray-500">Vehicle Model:</span> <span class="text-gray-900"><?= htmlspecialchars($d['vehicle_model']) ?></span></div>
+                                <div><span class="font-semibold text-gray-500">Fuel Compound:</span> <span class="text-gray-900"><?= htmlspecialchars($d['fuel_type']) ?></span></div>
+                            </div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <p class="text-xs text-center text-gray-400 italic">Profile tracking variables cleared from state cache.</p>
+                <?php endif; ?>
+
+                <div class="mt-8 pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400 font-mono">
+                    <span>EcoDrive Pvt Ltd Onboarding Platform</span>
+                    <span>Ver 1.1</span>
                 </div>
             </div>
         <?php endif; ?>

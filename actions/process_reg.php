@@ -3,7 +3,6 @@ session_start();
 require_once '../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Secure input data collection variables
     $name = trim($_POST['name'] ?? '');
     $birthday = $_POST['birthday'] ?? '';
     $gender = $_POST['gender'] ?? '';
@@ -15,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $vehicle_model = trim($_POST['vehicle_model'] ?? '');
     $fuel_type = trim($_POST['fuel_type'] ?? '');
 
-    // 1. Strict Server-Side Validation: Evaluate 24+ Age Limit Logic Guardrail
     if (empty($birthday)) {
         die("Error: Validation parameters broken. Date of Birth missing.");
     }
@@ -29,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        // 2. Execute PDO Structured Secure Insert Query Statement
         $sqlQuery = "INSERT INTO users (name, birthday, gender, address, country, region, city, license_class, vehicle_model, fuel_type, role) 
                      VALUES (:name, :birthday, :gender, :address, :country, :region, :city, :license_class, :vehicle_model, :fuel_type, 'driver')";
         
@@ -47,9 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':fuel_type'     => $fuel_type
         ]);
 
-        // 3. Instantiate State Context Storage Matrix to Map UI Access Routing
         $_SESSION['user_role'] = 'driver';
         $_SESSION['user_name'] = $name;
+        
+        
+        $_SESSION['driver_data'] = [
+            'birthday'      => $birthday,
+            'gender'        => $gender,
+            'address'       => $address,
+            'country'       => $country,
+            'region'        => $region,
+            'city'          => $city,
+            'license_class' => $license_class,
+            'vehicle_model' => $vehicle_model,
+            'fuel_type'     => $fuel_type
+        ];
 
         header("Location: ../public/dashboard.php");
         exit();
