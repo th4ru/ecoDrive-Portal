@@ -5,7 +5,7 @@ A clean, production-ready full-stack driver onboarding web application developed
 
 ---
 
-## 🚀 Core Technical Features
+## Core Technical Features
 
 - **Mandatory Native PHP Architecture:** Developed entirely in raw, vanilla PHP using **PDO (PHP Data Objects)** wrapper patterns. It explicitly implements Object-Oriented database programming, eliminating vulnerable legacy procedural models.
 
@@ -27,12 +27,12 @@ A clean, production-ready full-stack driver onboarding web application developed
 
 ---
 
-## 📁 Repository Directory Structure
+##  Repository Directory Structure
 
 The codebase adheres strictly to an organized monolithic architecture, segregating operational controllers from state layouts:
 
 ```text
-ecodrive-portal/
+eco/
 │
 ├── config/
 │   └── database.php      # Secure PDO database connector instance configuration
@@ -49,3 +49,15 @@ ecodrive-portal/
 │   ├── auth_login.php    # Resolves password verify hash comparisons matching Admins
 │   └── admin_action.php  # Handles administrative state drop queries & inline modifications
 └── README.md             # GitHub documentation and deployment framework
+```
+
+---
+##  Administrative Access Profile
+
+o To review the administrative backend features, log tracking grids, record editing modules, or elimination handlers, use the pre-seeded admin profile:
+
+Portal Sign-In Endpoint URL: http://localhost/ecodrive-portal/public/login.php
+
+Username Variable: admin
+
+Password Variable: admin123
