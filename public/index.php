@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDrive Driver Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <nav class="bg-emerald-600 p-4 text-white shadow-md flex justify-between items-center">
+        <h1 class="text-xl font-bold tracking-wide">EcoDrive Portal</h1>
+        <a href="login.php" class="bg-white text-emerald-700 px-4 py-2 rounded font-medium hover:bg-emerald-50 transition">Admin Portal Login</a>
+    </nav>
+
+    <main class="max-w-3xl mx-auto my-10 p-8 bg-white rounded-xl shadow-md border border-gray-100">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Driver Onboarding Form</h2>
+        <p class="text-sm text-gray-500 mb-6">Provide your personal and vehicle profile metrics below to register.</p>
+
+        <form action="../actions/process_reg.php" method="POST" class="space-y-6">
+            <div class="border-b border-gray-200 pb-6">
+                <h3 class="text-lg font-semibold text-emerald-700 mb-4">Personal Profile</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" name="name" required class="w-full border rounded-md p-2 focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Birthday</label>
+                        <input type="date" id="birthday" name="birthday" required class="w-full border rounded-md p-2 focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                        <select name="gender" required class="w-full border rounded-md p-2 focus:ring-2 focus:ring-emerald-500">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                        <textarea name="address" rows="2" required class="w-full border rounded-md p-2 focus:ring-2 focus:ring-emerald-500"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-b border-gray-200 pb-6">
+                <h3 class="text-lg font-semibold text-emerald-700 mb-2">Location Detection</h3>
+                <p class="text-xs text-gray-400 mb-4">Automated lookup parsing regional meta metrics using your public terminal signature.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                        <input type="text" id="country" name="country" readonly required class="w-full bg-gray-100 border rounded-md p-2 text-gray-500 cursor-not-allowed">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Region</label>
+                        <input type="text" id="region" name="region" readonly required class="w-full bg-gray-100 border rounded-md p-2 text-gray-500 cursor-not-allowed">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                        <input type="text" id="city" name="city" readonly required class="w-full bg-gray-100 border rounded-md p-2 text-gray-500 cursor-not-allowed">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold text-emerald-700 mb-4">Vehicle Specification</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">License Class</label>
+                        <select name="license_class" required class="w-full border rounded-md p-2 focus:ring-2 focus:ring-emerald-500">
+                            <option value="Class A">Class A</option>
+                            <option value="Class B">Class B</option>
+                            <option value="Class C">Class C</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Vehicle Model</label>
+                        <input type="text" name="vehicle_model" required class="w-full border rounded-md p-2 focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Fuel Type</label>
+                        <input type="text" name="fuel_type" required class="w-full border rounded-md p-2 focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-emerald-600 text-white p-3 rounded-md font-bold tracking-wide hover:bg-emerald-700 transition shadow">Submit Profile Registration</button>
+        </form>
+    </main>
+
+    <script src="js/location.js"></script>
+</body>
+</html>
