@@ -2,20 +2,20 @@
 session_start();
 require_once '../config/database.php';
 
-
+// 1. Process Global Sign-out Routing Sequence Logic
 if (isset($_GET['logout'])) {
     session_unset();
     session_destroy();
-    header("Location: ../public/login.php");
+    header("Location: ../../frontend/login.php");
     exit();
 }
 
-
+// 2. Structural RBAC Validation Guardrails Check
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
     die("Access Denied: Administrative system validation signature mismatch exception.");
 }
 
-
+// 3. Process Account Removal Query Requests Sequence Action
 if (isset($_GET['delete_id'])) {
     $targetDeleteId = (int)$_GET['delete_id'];
 
@@ -23,14 +23,14 @@ if (isset($_GET['delete_id'])) {
         $stmt = $pdo->prepare("DELETE FROM users WHERE id = :id AND role = 'driver'");
         $stmt->execute([':id' => $targetDeleteId]);
         
-        header("Location: ../public/dashboard.php");
+        header("Location: ../../frontend/dashboard.php");
         exit();
     } catch (\PDOException $ex) {
         die("Error finalizing row state drop parameters inside storage: " . $ex->getMessage());
     }
 }
 
-
+// 4. Process Inline Update Driver Record Changes Action
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_driver') {
     $id = (int)$_POST['id'];
     $name = trim($_POST['name'] ?? '');
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             ':id'            => $id
         ]);
 
-        header("Location: ../public/dashboard.php");
+        header("Location: ../../frontend/dashboard.php");
         exit();
     } catch (\PDOException $e) {
         die("Database update failed: " . $e->getMessage());

@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_role'] = 'driver';
         $_SESSION['user_name'] = $name;
         
-        
+        // Cache full profile metrics into session memory to display on frontend dashboard
         $_SESSION['driver_data'] = [
             'birthday'      => $birthday,
             'gender'        => $gender,
@@ -60,13 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'fuel_type'     => $fuel_type
         ];
 
-        header("Location: ../public/dashboard.php");
+        // Redirect out of backend to frontend dashboard view
+        header("Location: ../../frontend/dashboard.php");
         exit();
 
     } catch (\PDOException $errInstance) {
         die("System Storage Framework Exception Failure: " . $errInstance->getMessage());
     }
 } else {
-    header("Location: ../public/index.php");
+    header("Location: ../../frontend/index.html");
     exit();
 }

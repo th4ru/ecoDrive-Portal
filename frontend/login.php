@@ -20,7 +20,7 @@
             </div>
         <?php endif; ?>
 
-        <form action="../actions/auth_login.php" method="POST" class="space-y-4">
+        <form action="../backend/actions/auth_login.php" method="POST" class="space-y-4">
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
                 <input type="text" name="username" required class="w-full border rounded-md p-2 focus:ring-2 focus:ring-emerald-500">
@@ -32,7 +32,7 @@
             <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-md font-semibold hover:bg-emerald-700 transition">Authenticate Profile</button>
         </form>
         <div class="mt-4 text-center">
-            <a href="index.php" class="text-sm text-emerald-600 hover:underline">← Back to Registration</a>
+            <a href="index.html" class="text-sm text-emerald-600 hover:underline">← Back to Registration</a>
         </div>
     </div>
 </body>

@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
-    
+    // 1. Dynamic Auto-Populate Execution via External IPInfo Verification Layer
     fetch('https://ipinfo.io/json')
         .then(response => {
             if (!response.ok) throw new Error('Network metadata tracking error failed.');
@@ -15,13 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(err => {
             console.error("AJAX Error parsing Location parameters: ", err);
-            // Graceful fallback to prevent visual submission blocks
+            // Graceful fallback to prevent visual submission blocks locally
             document.getElementById('country').value = 'LK';
             document.getElementById('region').value = 'Western';
             document.getElementById('city').value = 'Colombo';
         });
 
-    
+    // 2. Strict Frontend Real-Time Age Validation Guardrails (Must be 24+ Years Old)
     const birthdayPicker = document.getElementById('birthday');
     if (birthdayPicker) {
         birthdayPicker.addEventListener('change', () => {
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
             let evaluatedAge = standardToday.getFullYear() - chosenDate.getFullYear();
             const monthDifference = standardToday.getMonth() - chosenDate.getMonth();
             
-            // Adjust variance calculation if standard tracking month/day marker hasn't passed
             if (monthDifference < 0 || (monthDifference === 0 && standardToday.getDate() < chosenDate.getDate())) {
                 evaluatedAge--;
             }

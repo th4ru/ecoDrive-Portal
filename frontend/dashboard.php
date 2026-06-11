@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once '../config/database.php';
+// Point directly across the folder division into backend config layer
+require_once '../backend/config/database.php';
 
 if (!isset($_SESSION['user_role'])) {
     header("Location: login.php");
@@ -22,7 +23,7 @@ $edit_id = $_GET['edit_id'] ?? null;
 <body class="bg-gray-50 min-h-screen">
     <nav class="bg-gray-900 p-4 text-white shadow flex justify-between items-center">
         <h1 class="text-lg font-bold tracking-wide">EcoDrive Portal <span class="text-xs bg-emerald-500 px-2 py-0.5 rounded ml-2 uppercase"><?= $role ?> Dashboard</span></h1>
-        <a href="../actions/admin_action.php?logout=true" class="bg-red-600 px-3 py-1.5 text-sm rounded hover:bg-red-700 transition">Logout</a>
+        <a href="../backend/actions/admin_action.php?logout=true" class="bg-red-600 px-3 py-1.5 text-sm rounded hover:bg-red-700 transition">Logout</a>
     </nav>
 
     <main class="max-w-7xl mx-auto my-10 p-6">
@@ -68,7 +69,7 @@ $edit_id = $_GET['edit_id'] ?? null;
                             <?php else: foreach ($drivers as $driver): ?>
                                 
                                 <?php if ($edit_id == $driver['id']): ?>
-                                    <form action="../actions/admin_action.php" method="POST">
+                                    <form action="../backend/actions/admin_action.php" method="POST">
                                         <input type="hidden" name="action" value="update_driver">
                                         <input type="hidden" name="id" value="<?= $driver['id'] ?>">
                                         <tr class="bg-amber-50/50">
@@ -109,7 +110,7 @@ $edit_id = $_GET['edit_id'] ?? null;
                                         <td class="p-3 text-gray-600"><?= htmlspecialchars($driver['vehicle_model']) ?> (<?= htmlspecialchars($driver['fuel_type']) ?>)</td>
                                         <td class="p-3 text-center space-x-3">
                                             <a href="dashboard.php?edit_id=<?= $driver['id'] ?>" class="text-blue-600 hover:underline font-medium text-xs">Edit</a>
-                                            <a href="../actions/admin_action.php?delete_id=<?= $driver['id'] ?>" onclick="return confirm('Confirm removal execution sequence?')" class="text-red-600 hover:underline text-xs">Delete</a>
+                                            <a href="../backend/actions/admin_action.php?delete_id=<?= $driver['id'] ?>" onclick="return confirm('Confirm removal execution sequence?')" class="text-red-600 hover:underline text-xs">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endif; ?>
